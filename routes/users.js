@@ -5,7 +5,7 @@ uuidv4();
 
 const router  = express.Router();
 
-const users = []
+let users = []
 
 router.get('/',(req,res)=>{ 
    
@@ -36,4 +36,28 @@ router.delete('/:id',(req,res)=>{
     res.send("user deleted !!!")
 })
 
+
+router.patch('/:id',(req,res)=>{
+
+
+    const {id} = req.params;
+    console.log(id)
+    const {firstName,lastName,age} = req.body;
+ 
+    console.log(firstName)
+    const updateUser = users.find(item => item.id === id) 
+
+    console.log(updateUser)
+    if(firstName){
+       updateUser.firstName  =  firstName ;
+    }
+    if(lastName){
+        updateUser.lastName  =  lastName ;
+     }
+     if(age){
+        updateUser.age  =  age ;
+     }
+
+     res.send("user updated !!!")
+})
 export default router;
