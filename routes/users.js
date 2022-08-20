@@ -1,4 +1,5 @@
 import express from "express"
+
 import { v4 as uuidv4 } from "uuid";
 uuidv4();
 
@@ -20,5 +21,13 @@ router.post('/',(req,res)=>{
     users.push(idWithUser)
     res.send("user added !!!")
 })
+
+router.get('/:id',(req,res)=>{
+  const {id} = req.params;
+
+  const find = users.find(item => item.id === id) 
+
+  res.send(find)
+});
 
 export default router;
